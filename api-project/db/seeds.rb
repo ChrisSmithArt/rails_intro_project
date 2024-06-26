@@ -44,12 +44,26 @@ cyclings = CSV.parse(cycling_data, headers: true, encoding: 'utf-8')
 
 cyclings.each do |cycling|
   Product.create(
-    id: cycling['cycling ID'],
-    name: cycling['cycling Name'],
-    address: cycling['Address'],
-    description: cycling['Location Description'],
-    category: cycling['cycling Category'],
-    totalarea: cycling['Total Area in Hectares'],
+    id: cycling['ID'],
+    type: cycling['Infrastructure Type'],
+    name: cycling['Infrastructure Name'],
+    roadlocation: cycling['Road Location'],
+    twoway: cycling['Two Way Travel'],
+    length: cycling['Length'],
     location: cycling['Location'],
+  )
+end
+
+parkasset_csv = Rails.root.join('db/Park_Asset_Inventory_20240626')
+parkasset_data = File.read(parkasset_csv)
+parkassets = CSV.parse(parkasset_data, headers: true, encoding: 'utf-8')
+
+parkassets.each do |parkasset|
+  Product.create(
+    id: parkasset['Asset ID'],
+    parkid: parkasset['Park ID'],
+    assetclass: parkasset['Asset Class'],
+    assetsize: parkasset['Asset Size'],
+    assetype: parkasset['Asset Type'],
   )
 end

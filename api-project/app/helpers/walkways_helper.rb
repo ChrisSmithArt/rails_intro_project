@@ -1,0 +1,2 @@
+module WalkwaysHelper
+end

@@ -1,0 +1,2 @@
+class Walkway < ApplicationRecord
+end

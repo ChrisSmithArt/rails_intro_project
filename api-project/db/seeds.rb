@@ -15,9 +15,9 @@ walkways = CSV.parse(walkway_data, headers: true, encoding: 'utf-8')
 
 walkways.each do |walkway|
   Product.create(
-    id: walkway['ID'],
-    length: walkway['Length'],
-    width: walkway['Width'],
+    id: walkway['ID'].to_i,
+    length: walkway['Length'].to_d,
+    width: walkway['Width'].to_d,
     location: walkway['Location'],
   )
 end
@@ -28,12 +28,12 @@ parks = CSV.parse(park_data, headers: true, encoding: 'utf-8')
 
 parks.each do |park|
   Product.create(
-    id: park['Park ID'],
+    id: park['Park ID'].to_i,
     name: park['Park Name'],
     address: park['Address'],
     description: park['Location Description'],
     category: park['Park Category'],
-    totalarea: park['Total Area in Hectares'],
+    totalarea: park['Total Area in Hectares'].to_d,
     location: park['Location'],
   )
 end
@@ -44,12 +44,12 @@ cyclings = CSV.parse(cycling_data, headers: true, encoding: 'utf-8')
 
 cyclings.each do |cycling|
   Product.create(
-    id: cycling['ID'],
+    cycling_id: cycling['ID'],
     type: cycling['Infrastructure Type'],
     name: cycling['Infrastructure Name'],
     roadlocation: cycling['Road Location'],
-    twoway: cycling['Two Way Travel'],
-    length: cycling['Length'],
+    twoway: cycling['Two Way Travel'].to_b,
+    length: cycling['Length'].to_d,
     location: cycling['Location'],
   )
 end
@@ -60,8 +60,8 @@ parkassets = CSV.parse(parkasset_data, headers: true, encoding: 'utf-8')
 
 parkassets.each do |parkasset|
   Product.create(
-    id: parkasset['Asset ID'],
-    parkid: parkasset['Park ID'],
+    id: parkasset['Asset ID'].to_i,
+    parkid: parkasset['Park ID'].to_i,
     assetclass: parkasset['Asset Class'],
     assetsize: parkasset['Asset Size'],
     assetype: parkasset['Asset Type'],

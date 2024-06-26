@@ -7,7 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
+require "csv"
 
 walkway_csv = Rails.root.join('db/Walkways_20240626.csv')
 walkway_data = File.read(walkway_csv)
